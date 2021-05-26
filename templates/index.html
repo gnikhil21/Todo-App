@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+  <center class="row">
+    <h1><i>TODO LIST</i></h1>
+    <hr />
+  </center>
+
+  <div class="row">
+    <div class="col-md-4"> </div>
+    <div class="col-md-3" >
+      <div  class="submit_form">
+      <form  method="POST" action="/todo/">
+        {% csrf_token %}
+        {{forms|crispy}}
+        <center>
+        <input type="submit" class="btn btn-default" value="Add note" />
+      </center>
+      </form>
+    </div>
+    <div class="col-md-4"> </div>
+    <div>
+        <form action="/todo/notes/" >
+            <button >All saved notes</button>
+        </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+

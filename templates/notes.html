@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="general">
+<div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        {% for i in points %}
+        <div class="card">
+            
+          <center><b>{{i.tittle}}</b></center>
+          <hr/>
+          {{i.note}}
+          <hr/>
+          {{i.date}}
+          <br />
+          <br />
+          <form action="/todo/del/{{i.id}}/" method="POST" style=" padding-right: 4%; padding-bottom: 0%;">
+            {% csrf_token %}
+            <button value="remove" type="submit"  class="btn btn-primary" style="float: right;"><span class="glyphicon glyphicon-trash"></span> &nbsp; remove</button>
+          </form>
+          <form action="/todo/update/{{i.id}}/"  style=" padding-right: 15%; padding-bottom: 3%;">
+            {% csrf_token %}
+            <button  type="submit"  class="btn btn-primary" style="float: right;"><span class="glyphicon glyphicon-plus"></span> &nbsp; Update</button>
+          </form>
+        </div>
+        {% endfor%}
+      </div>
+      
+      <form action="/todo/"  >
+        <button class="button"><span class="glyphicon glyphicon-plus"></button>
+        </form>
+    
+  </div>
+{% endblock %}
